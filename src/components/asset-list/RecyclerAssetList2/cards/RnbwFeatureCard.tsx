@@ -9,9 +9,11 @@ import rnbwCoinImage from '@/assets/rnbw.png';
 import { useRnbwFeatureCard } from '@/features/rnbw-rewards/hooks/useRnbwFeatureCard';
 import * as i18n from '@/languages';
 import { ETH_COLOR_DARK_ACCENT } from '@/__swaps__/screens/Swap/constants';
+import { RNBW_MEMBERSHIP, useExperimentalFlag } from '@/config';
 import { Navigation } from '@/navigation';
 import Routes from '@/navigation/routesNames';
 import { IS_IOS } from '@/env';
+import { useRemoteConfig } from '@/model/remoteConfig';
 
 import { THICK_BORDER_WIDTH } from '@/styles/constants';
 
@@ -20,8 +22,10 @@ const BORDER_RADIUS = 28;
 
 export const RnbwFeatureCard = memo(function RnbwFeatureCard() {
   const { isDarkMode } = useColorMode();
+  const { rnbw_membership_enabled } = useRemoteConfig('rnbw_membership_enabled');
+  const showRnbwMembership = useExperimentalFlag(RNBW_MEMBERSHIP) || rnbw_membership_enabled;
   const navigateToRnbwRewards = () => {
-    Navigation.handleAction(Routes.RNBW_REWARDS_SCREEN);
+    Navigation.handleAction(showRnbwMembership ? Routes.RNBW_MEMBERSHIP_SCREEN : Routes.RNBW_REWARDS_SCREEN);
   };
 
   return (
