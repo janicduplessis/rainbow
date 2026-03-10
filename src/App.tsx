@@ -37,7 +37,7 @@ import { BackupsSync } from '@/state/sync/BackupsSync';
 import { AbsolutePortalRoot } from './components/AbsolutePortal';
 import { PerformanceProfiler } from '@shopify/react-native-performance';
 import { PerformanceReports, PerformanceReportSegments, PerformanceTracking } from './performance/tracking';
-import { TestDeeplinkHandler } from './components/TestDeeplinkHandler';
+import { TestDeeplinkHandler } from '@/features/e2e/ui/TestDeeplinkHandler';
 import { RainbowToastDisplay } from '@/components/rainbow-toast/RainbowToast';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { ReducedMotionConfig, ReduceMotion } from 'react-native-reanimated';
@@ -80,10 +80,10 @@ function AppComponent() {
         )}
         <OfflineToast />
         <Toaster />
+        {IS_TEST && <TestDeeplinkHandler />}
       </View>
       <NotificationsHandler />
       <DeeplinkHandler initialRoute={initialRoute} />
-      {IS_TEST && <TestDeeplinkHandler />}
       <BackupsSync />
       <AbsolutePortalRoot />
     </>
