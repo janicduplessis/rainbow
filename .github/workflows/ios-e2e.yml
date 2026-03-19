@@ -72,6 +72,11 @@ jobs:
           SSH_AUTH_SOCK: /tmp/ssh_agent_scripts.sock
         run: |
           eval $CI_SCRIPTS
+      - name: Checkout scripts branch for sandbox e2e
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent_scripts.sock
+        run: |
+          cd rainbow-scripts && git fetch origin @janic/sandbox-e2e-test && git checkout @janic/sandbox-e2e-test && cd ..
 
       - name: Get Yarn cache directory path
         id: yarn-cache-dir-path
@@ -92,6 +97,7 @@ jobs:
       - name: Install dependencies
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent_sandbox.sock
+          SANDBOX_BRANCH: '@janic/emit-close-on-blocked-ws'
         run: yarn install && yarn setup
 
       - name: Rock Remote Build - iOS simulator
