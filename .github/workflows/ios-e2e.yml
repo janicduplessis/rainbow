@@ -45,13 +45,6 @@ jobs:
         run: |
           gh auth setup-git
           git config --global url."https://github.com/".insteadOf "git@github.com:"
-          echo "=== ~/.gitconfig before fix ==="
-          cat -v ~/.gitconfig
-          sed -i'' -e '/autocrlf/d' ~/.gitconfig
-          echo "=== ~/.gitconfig after fix ==="
-          cat -v ~/.gitconfig
-          echo "=== all git configs ==="
-          git config --list --show-origin 2>&1 || true
 
       - name: Setup env
         run: |
@@ -129,13 +122,6 @@ jobs:
         run: |
           gh auth setup-git
           git config --global url."https://github.com/".insteadOf "git@github.com:"
-          echo "=== ~/.gitconfig before fix ==="
-          cat -v ~/.gitconfig
-          sed -i'' -e '/autocrlf/d' ~/.gitconfig
-          echo "=== ~/.gitconfig after fix ==="
-          cat -v ~/.gitconfig
-          echo "=== all git configs ==="
-          git config --list --show-origin 2>&1 || true
 
       - name: Setup env
         run: |
