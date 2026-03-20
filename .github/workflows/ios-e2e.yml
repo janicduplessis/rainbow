@@ -40,13 +40,15 @@ jobs:
         run: sudo xcode-select --switch /Applications/Xcode_16.4.app
 
       - name: Configure private repo access
+        env:
+          GH_TOKEN: ${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}
         run: |
-          git config --global url."https://x-access-token:${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}@github.com/".insteadOf "git@github.com:"
-          git config --global url."https://x-access-token:${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}@github.com/".insteadOf "https://github.com/"
+          gh auth setup-git
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
 
       - name: Setup env
         run: |
-          git clone git@github.com:rainbow-me/rainbow-env.git
+          gh repo clone rainbow-me/rainbow-env
           mv rainbow-env/dotenv .env
           rm -rf rainbow-env
           sed -i'' -e "s/IS_TESTING=false/IS_TESTING=true/" .env && rm -f .env-e
@@ -116,13 +118,15 @@ jobs:
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
 
       - name: Configure private repo access
+        env:
+          GH_TOKEN: ${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}
         run: |
-          git config --global url."https://x-access-token:${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}@github.com/".insteadOf "git@github.com:"
-          git config --global url."https://x-access-token:${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}@github.com/".insteadOf "https://github.com/"
+          gh auth setup-git
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
 
       - name: Setup env
         run: |
-          git clone git@github.com:rainbow-me/rainbow-env.git
+          gh repo clone rainbow-me/rainbow-env
           mv rainbow-env/dotenv .env
           rm -rf rainbow-env
 
