@@ -41,8 +41,8 @@ jobs:
 
       - name: Configure private repo access
         run: |
-          git config --global url."https://x-access-token:${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
-          git config --global url."https://x-access-token:${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
+          git config --global url."https://x-access-token:${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}@github.com/".insteadOf "git@github.com:"
+          git config --global url."https://x-access-token:${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}@github.com/".insteadOf "https://github.com/"
 
       - name: Setup env
         run: |
@@ -117,8 +117,8 @@ jobs:
 
       - name: Configure private repo access
         run: |
-          git config --global url."https://x-access-token:${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
-          git config --global url."https://x-access-token:${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
+          git config --global url."https://x-access-token:${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}@github.com/".insteadOf "git@github.com:"
+          git config --global url."https://x-access-token:${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}@github.com/".insteadOf "https://github.com/"
 
       - name: Setup env
         run: |
