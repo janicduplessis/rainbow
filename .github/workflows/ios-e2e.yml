@@ -48,7 +48,7 @@ jobs:
 
       - name: Setup env
         run: |
-          gh repo clone rainbow-me/rainbow-env
+          git clone https://github.com/rainbow-me/rainbow-env.git
           mv rainbow-env/dotenv .env
           rm -rf rainbow-env
           sed -i'' -e "s/IS_TESTING=false/IS_TESTING=true/" .env && rm -f .env-e
@@ -126,7 +126,7 @@ jobs:
 
       - name: Setup env
         run: |
-          gh repo clone rainbow-me/rainbow-env
+          git clone https://github.com/rainbow-me/rainbow-env.git
           mv rainbow-env/dotenv .env
           rm -rf rainbow-env
 
