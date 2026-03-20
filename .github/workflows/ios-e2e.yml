@@ -57,6 +57,9 @@ jobs:
           name: sandbox
           key: ${{ secrets.DEPLOY_PKEY_SANDBOX_REPO }}
 
+      - name: Configure private repo access
+        run: git config --global url."https://x-access-token:${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
+
       - name: Setup env
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent_env.sock
