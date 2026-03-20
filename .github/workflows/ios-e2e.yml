@@ -46,10 +46,10 @@ jobs:
           gh auth setup-git
           git config --global url."https://github.com/".insteadOf "git@github.com:"
           echo "=== ~/.gitconfig before fix ==="
-          cat -A ~/.gitconfig
+          cat -v ~/.gitconfig
           sed -i'' -e '/autocrlf/d' ~/.gitconfig
           echo "=== ~/.gitconfig after fix ==="
-          cat -A ~/.gitconfig
+          cat -v ~/.gitconfig
           echo "=== all git configs ==="
           git config --list --show-origin 2>&1 || true
 
@@ -130,10 +130,10 @@ jobs:
           gh auth setup-git
           git config --global url."https://github.com/".insteadOf "git@github.com:"
           echo "=== ~/.gitconfig before fix ==="
-          cat -A ~/.gitconfig
+          cat -v ~/.gitconfig
           sed -i'' -e '/autocrlf/d' ~/.gitconfig
           echo "=== ~/.gitconfig after fix ==="
-          cat -A ~/.gitconfig
+          cat -v ~/.gitconfig
           echo "=== all git configs ==="
           git config --list --show-origin 2>&1 || true
 
