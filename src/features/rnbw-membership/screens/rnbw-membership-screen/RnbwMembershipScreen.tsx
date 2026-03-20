@@ -9,6 +9,7 @@ import { RnbwClaimCard } from '@/features/rnbw-membership/screens/rnbw-membershi
 import { useRewardsBalanceStore } from '@/features/rnbw-rewards/stores/rewardsBalanceStore';
 import { useAirdropBalanceStore } from '@/features/rnbw-rewards/stores/airdropBalanceStore';
 import * as i18n from '@/languages';
+import { RnbwStakingCard } from '@/features/rnbw-membership/screens/rnbw-membership-screen/components/RnbwStakingCard';
 
 export const RnbwMembershipScreen = memo(function RnbwMembershipScreen() {
   const { navigate } = useNavigation();
@@ -36,6 +37,7 @@ export const RnbwMembershipScreen = memo(function RnbwMembershipScreen() {
       <Navbar hasStatusBarInset title="Membership" leftComponent={<AccountImage />} />
       <ScrollView contentContainerStyle={styles.scrollViewContentContainer} style={styles.flex}>
         <Box gap={16}>
+          <RnbwStakingCard />
           {hasClaimableRewards && (
             <RnbwClaimCard
               tokenAmount={rewardsTokenAmount}
