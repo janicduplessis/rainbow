@@ -27,6 +27,8 @@ jobs:
     timeout-minutes: 45
     outputs:
       artifact-id: ${{ steps.rock-remote-build-ios.outputs.artifact-id }}
+    env:
+      GH_TOKEN: ${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
@@ -40,8 +42,6 @@ jobs:
         run: sudo xcode-select --switch /Applications/Xcode_16.4.app
 
       - name: Configure private repo access
-        env:
-          GH_TOKEN: ${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}
         run: |
           gh auth setup-git
           git config --global url."https://github.com/".insteadOf "git@github.com:"
@@ -110,6 +110,7 @@ jobs:
       cancel-in-progress: false
     timeout-minutes: 30
     env:
+      GH_TOKEN: ${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}
       SHARD_TOTAL: 4
       SHARD_INDEX: ${{ matrix.shard-index }}
       ARTIFACTS_FOLDER: e2e-artifacts
@@ -118,8 +119,6 @@ jobs:
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
 
       - name: Configure private repo access
-        env:
-          GH_TOKEN: ${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}
         run: |
           gh auth setup-git
           git config --global url."https://github.com/".insteadOf "git@github.com:"

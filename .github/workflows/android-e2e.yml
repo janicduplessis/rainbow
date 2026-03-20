@@ -31,6 +31,8 @@ jobs:
       cancel-in-progress: true
     outputs:
       artifact-id: ${{ steps.rock-remote-build-android.outputs.artifact-id }}
+    env:
+      GH_TOKEN: ${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}
 
     steps:
       - name: Checkout repo
@@ -45,8 +47,6 @@ jobs:
         run: sudo apt install libsecret-tools
 
       - name: Configure private repo access
-        env:
-          GH_TOKEN: ${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}
         run: |
           gh auth setup-git
           git config --global url."https://github.com/".insteadOf "git@github.com:"
@@ -136,6 +136,7 @@ jobs:
       cancel-in-progress: false
 
     env:
+      GH_TOKEN: ${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}
       SHARD_TOTAL: 4
       SHARD_INDEX: ${{ matrix.shard-index }}
       ANDROID_EMULATOR_API_LEVEL: 31
@@ -150,8 +151,6 @@ jobs:
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
 
       - name: Configure private repo access
-        env:
-          GH_TOKEN: ${{ secrets.PRIVATE_REPOS_GITHUB_TOKEN_TMP }}
         run: |
           gh auth setup-git
           git config --global url."https://github.com/".insteadOf "git@github.com:"
