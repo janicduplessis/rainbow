@@ -45,6 +45,7 @@ jobs:
         run: |
           gh auth setup-git
           git config --global url."https://github.com/".insteadOf "git@github.com:"
+          sed -i'' -e 's/^ \+//' ~/.gitconfig
 
       - name: Setup env
         run: |
@@ -122,6 +123,7 @@ jobs:
         run: |
           gh auth setup-git
           git config --global url."https://github.com/".insteadOf "git@github.com:"
+          sed -i'' -e 's/^ \+//' ~/.gitconfig
 
       - name: Setup env
         run: |
